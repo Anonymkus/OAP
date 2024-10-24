@@ -1,3 +1,5 @@
+# нереализованная функция
+
 import os
 import stats
 from random import choice
