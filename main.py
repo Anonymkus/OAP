@@ -63,7 +63,7 @@ def show_arena_location(u_stat):
         user_choice = input("Что делать? ")
         if user_choice == "1":
             enemy_first_names = ["Поц", "Клоун", "Чертилла"]
-            enemy_second_names = ["Необыкновенный", "Обыкновенный", "Очуменный"]
+            enemy_second_names = ["Необыкновенный", "Обыкновенный", "Очешуенный"]
             enemy_name = f"{enemy_first_names[random.randint(0, 2)]} {enemy_second_names[random.randint(0, 2)]}"
             enemy_hp_t = random.randint(100, 201)
             enemy_hp = enemy_hp_t
@@ -71,19 +71,19 @@ def show_arena_location(u_stat):
             is_fighting = True
             while is_fighting:
                 if enemy_hp <= 0:
-                    print(f"{u_stat["Имя"]} победило и зафармило сколько-то деньго-штук и абонемент в бассейн!")
+                    print(f"{u_stat["Имя"]} победило и получило деньги с абонементом в бассейн!")
                     u_stat["Бюджет"] += random.randint(50, 100)
                     u_stat["Инвентарь"].append("Абонемент")
                     break
                 elif u_stat["Здоровье"] <= 0:
-                    print(f"{u_stat["Имя"]} - неудачник, пока пока!")
+                    print(f"ГГ, {u_stat["Имя"]}.")
                     return
                 else:
                     os.system("cls")
                     show_stat(u_stat)
-                    print(f"Погоняло соперника: {enemy_name}")
+                    print(f"Имя соперника: {enemy_name}")
                     print(f"Здоровья только: {enemy_hp}")
-                    print(f"Бояурышника у него: {enemy_heals}")
+                    print(f"Боярышника у него: {enemy_heals}")
                     print("GLHF")
                     print("")
                     print("1 - Атаковать")
@@ -102,14 +102,14 @@ def show_arena_location(u_stat):
                         case 2:
                             print(f"{u_stat['Имя']} ставит блок")
                         case 3:
-                            print(f"{u_stat['Имя']} подвыпило и похилилось")
+                            print(f"{u_stat['Имя']} похилилось")
                             u_stat["Инвентарь"].remove("боярышник")
                             u_stat["Имя"] = 100
                         case _:
-                            print("Ты опять не догоняешь, и опять меня разачаровываешь.")
+                            print("Неа")
                     
                     if enemy_hp < enemy_hp_t/4 and enemy_heals != 0:
-                        print(f"{enemy_name} подвыпил и похилился")
+                        print(f"{enemy_name} похилился")
                         enemy_heals -= 1
                         enemy_hp = enemy_hp_t
                     else:
@@ -120,7 +120,7 @@ def show_arena_location(u_stat):
                                 print(f"{enemy_name} ставит блок")
                                 e_block += 1
                             case _:
-                                print("Ты опять не догоняешь, и опять меня разачаровываешь.")
+                                print("Неа")
                     if u_attack == 1:
                         if e_block:
                             enemy_hp -= 10
@@ -128,14 +128,14 @@ def show_arena_location(u_stat):
                         else:
                             enemy_hp -= 15
                             u_stat["Здоровье"] -= 10
-                            print(f"{u_stat["Имя"]} атаковала атакующего противника: {enemy_name} получил маслину на 15хп,")
-                            print(f"{u_stat["Имя"]} получил маслину на 10хп")
+                            print(f"{u_stat["Имя"]} атаковала атакующего противника: {enemy_name} получил урон 15хп,")
+                            print(f"{u_stat["Имя"]} получил урон 10хп")
                     else:
                         if e_block:
                             print(f"{u_stat["Имя"]} и {enemy_name} заблокировали друг друга... зачем-то")
                         else:
                             u_stat["Здоровье"] -= 5
-                            print(f"{u_stat["Имя"]} поставил блок и получил маслину в 5хп")
+                            print(f"{u_stat["Имя"]} поставил блок и получил урон 5хп")
 
                 input("ENTER — продолжить")
 
@@ -165,8 +165,8 @@ def show_market_place(u_stat):
     while is_busy:
         os.system("cls")
         show_stat(u_stat)
-        print("1 — Купить боярышник за сотку.")
-        print("2 — Купить абонемент в бассейн за двестипятьдесят.")
+        print("1 — Купить боярышник за 100.")
+        print("2 — Купить абонемент в бассейн за 250.")
         print("3 — Пойти выключить несуществующий утюг.")
         choice = input("Что делать? ")
         match choice:
@@ -188,7 +188,7 @@ def show_market_place(u_stat):
                 is_busy = False
                 print(f"{u_stat["Имя"]} решило не отдавать вещь и пошло в бан.")
             case _:
-                print("У меня ощущение, что ты что-то не догоняешь.")
+                print("Неа")
 
         input("ENTER — дальше")
     return
@@ -201,7 +201,7 @@ def show_dice_location(u_stat):
     while is_busy:
         os.system("cls")
         show_stat(u_stat)
-        print("А вот и игральная - место, в котором проигрывают жизнь, зато закуски вкусные.")
+        print("Сказочное казино")
         print("1 — Сыграть")
         print("2 — Уйти")
         choice = input("Что делать? ")
@@ -220,10 +220,10 @@ def show_dice_location(u_stat):
 
                 if u_score > dice_score:
                     u_stat["Бюджет"] += u_bet
-                    print(f"{u_stat["Имя"]} выиграло {u_bet} деньго-штук.")
+                    print(f"{u_stat["Имя"]} выиграло {u_bet} денег.")
                 elif u_score < dice_score:
                     u_stat["Бюджет"] -= u_bet
-                    print(f"Неудачник {u_stat["Имя"]} проиграло {u_bet} деньго-штук.")
+                    print(f"Неудачник {u_stat["Имя"]} проиграло {u_bet} денег.")
                 else:
                     print("Ничья!")
         
@@ -231,7 +231,7 @@ def show_dice_location(u_stat):
             is_busy = False
             print(f"{u_stat["Имя"]} свалило куда подальше.")        
         else:
-            print("Мне кажется ты что-то не поняло.")
+            print("Неа")
 
         input("ENTER — дальше")
     return
@@ -247,14 +247,14 @@ u_stat = {
     "Удача" : 1
 }
 
-print("Добро пожаловать в игру про непонятно что на Python")
-print("Чтобы у тебя было ощущение выбора хоть где-то, ")
-print("напиши сам данные своего персонажа и не забудь нажать на ENTER")
+print("Добро пожаловать в игру про непонятно что на Python!")
+print("Это пустая трата времени, но почему бы и не поиграть. ")
+print("Было бы славно, если ты не пытался ломать игру. Ну а обращаться к тебе будут в среднем лице.")
 u_stat["Имя"] = input("Выбери имя персонажа - ") 
 print("Ты проснулось где-тo, а главное зачем-тo.")
 print("И не само собой перед тобой 2 пути.")
-print("По странной и непонятной причине ты знаешь куда они ведутЮ")
-print("а также ты знаешь, что для победы тебе нужно купить 10 абонементов в бассейн.")
+print("По понятной причине ты знаешь, куда они ведут.")
+print("А также ты знаешь, что для победы тебе нужно купить 10 абонементов в бассейн.")
 input("ENTER - продолжить")
 
 
@@ -268,12 +268,12 @@ while game:
         os.system("cls")
         show_stat(u_stat)
         print("Ты на развилке...")
-        print("1 — Лавка. Приготовьте свои рупии.")
+        print("1 — Лавка.")
         print("2 — Игра в кости. Время заработка, вопрос чего.")
-        print("3 — Арена. Можно что-нибудь да выбить с кого-нибудь, а может и себя угробить.")
-        print("-1 — Путь для слабаков.")
+        print("3 — Арена. В теории можно что-то заработать")
+        print("-1 — Путь для ненавидящих эту игру.")
         print("0 — Выйти из игры.")
-        choice = int(input("Чего желаете? "))
+        choice = int(input("Куда пойдем? "))
 
         match choice:
             case 1:
@@ -287,7 +287,7 @@ while game:
             case -1:
                 game = cheat_code(u_stat)
             case _:
-                print("Ощущение выбора, а не сам выбор.")
+                print("Свобода воли не для этой игры")
                 input("ENTER — дальше")
     
 print("Конец. Это самое худшая трата вашего времни, поздравляю")
