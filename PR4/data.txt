@@ -1,0 +1,6 @@
+u/admin/admin/
+u/Sonery/qwe/
+u/qwe/qwe/
+id/admin/0/
+id/Sonery/1/
+id/qwe/0/
